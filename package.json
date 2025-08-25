@@ -4,7 +4,8 @@
   "description": "Simple task manager with session auth",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "jest --runInBand"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,11 @@
   "homepage": "https://github.com/Ikechukwu-Okwuchukwu-Amaechina/task-manager#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "express-session": "^1.17.3"
+    "express-session": "^1.17.3",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "supertest": "^6.3.0"
   }
 }

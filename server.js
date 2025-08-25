@@ -1,10 +1,15 @@
-const http = require('http');
+
+
 const app = require('./app');
 
+// Default port can be overridden by setting PORT in the environment.
 const PORT = process.env.PORT || 3000;
 
-const server = http.createServer(app);
 
-server.listen(PORT, () => {
-	console.log(`Server listening on http://localhost:${PORT}`);
-});
+if (require.main === module) {
+	app.listen(PORT, () => {
+		console.log(`Server listening on http://localhost:${PORT}`);
+	});
+}
+
+module.exports = app;

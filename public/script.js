@@ -27,8 +27,11 @@ const tasksDiv = document.getElementById('tasks');
 
 function renderTask(task) {
   const el = document.createElement('div');
-  el.className = 'task ' + (task.priority === 'High' ? 'priority-high' : task.priority === 'Medium' ? 'priority-medium' : 'priority-low');
-  el.innerHTML = `<strong>${task.title}</strong> <button data-id="${task.id}" class="del">Del</button> <button data-id="${task.id}" class="toggle">Toggle</button><div>${task.description}</div>`;
+  // add a small class when completed so CSS can style it (strike-through, faded, etc.)
+  el.className = 'task ' + (task.priority === 'High' ? 'priority-high' : task.priority === 'Medium' ? 'priority-medium' : 'priority-low') + (task.completed ? ' completed' : '');
+  const toggleLabel = task.completed ? 'Unmark' : 'Toggle';
+  const doneLabel = task.completed ? '<em>(done)</em>' : '';
+  el.innerHTML = `<strong>${task.title}</strong> ${doneLabel} <button data-id="${task.id}" class="del">Del</button> <button data-id="${task.id}" class="toggle">${toggleLabel}</button><div>${task.description}</div>`;
   return el;
 }
 
@@ -60,10 +63,10 @@ if (taskForm) {
     }
     if (e.target.classList.contains('toggle')) {
       const id = e.target.dataset.id;
-      // very simple toggle: fetch current tasks to find completed state
+      // fetch current tasks to find completed state; compare IDs as strings to avoid type mismatch
       const resp = await fetch('/api/tasks');
       const tasks = await resp.json();
-      const t = tasks.find(x => x.id === id);
+      const t = tasks.find(x => String(x.id) === String(id));
       if (t) {
         await fetch(`/api/tasks/${id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ completed: !t.completed }) });
         loadTasks();
