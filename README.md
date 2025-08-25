@@ -106,25 +106,7 @@ How to use the frontend:
 2. Open `http://localhost:3000` in your browser
 3. Create a user via signup, log in, then go to the dashboard to add and toggle tasks
 
-## Files of interest
 
-- `server.js` — app entrypoint (exports `app` when required)
-- `app.js` — Express app setup (middleware, session, route wiring)
-- `routes/*.js` — route definitions
-- `controllers/*.js` — handlers for auth and tasks (read/write JSON)
-- `public/*` — demo frontend and client JS
-
-## Next suggestions (optional)
-
-- Add basic input validation and password hashing (bcrypt) before storing users.
-- Move from JSON files to a small embedded DB (e.g., SQLite) to avoid concurrency issues.
-- Add more unit tests for edge cases (empty title, invalid IDs, permission checks).
-- Add CSS style for `.task.completed` (I can add a small rule if you'd like).
-
-## Recent changes made in this repo (summary)
-
-- `server.js` was simplified to use `app.listen(...)` when run directly and to export `app` for testability.
-- `public/script.js` was updated to fix the toggle button behavior and to show completed state in the UI.
 
 ## Author
 
