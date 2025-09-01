@@ -1,4 +1,11 @@
-[{
-    "username":"Ikechukwu",
-    "password":"zxcvbnm"
-}]
+[
+  {
+    "username": "Ikechukwu",
+    "password": "zxcvbnm"
+  },
+  {
+    "id": "1756747545698",
+    "username": "alice",
+    "password": "password123"
+  }
+]
